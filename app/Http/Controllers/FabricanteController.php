@@ -24,7 +24,7 @@ class FabricanteController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return "Mostrando el menú para crear un Fabricante";
 	}
 
 	/**
@@ -45,7 +45,7 @@ class FabricanteController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		"Mostrando el  Fabricante con id ".$id;
 	}
 
 	/**
@@ -56,7 +56,7 @@ class FabricanteController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		"Mostrando el formulario para editar el Fabricante con id ".$id;
 	}
 
 	/**
@@ -67,8 +67,7 @@ class FabricanteController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
-	}
+		"Mostrando el formulario para actualizar el Fabricante con id ".$id;
 
 	/**
 	 * Remove the specified resource from storage.
@@ -78,7 +77,7 @@ class FabricanteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		"Mostrando el formulario para eliminar el Fabricante con id ".$id;
 	}
 
 }

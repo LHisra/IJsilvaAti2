@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Fabricante;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +15,12 @@ class FabricanteVehiculoController extends Controller {
 	 */
 	public function index($id)
 	{
-		return "Mostrando los vehículos que pertenecen a los fabbricantes " .$id;
+		$fabricante = Fabricante::find($id);
+		$vehiculos = $fabricante->vehiculos;
+		if(!$fabricante){
+			return response()->json(['mensaje'=>'No se encuentra al fabricante', 'codigo'=>404],404);
+		}
+		return response()->json(['datoss'=>$vehiculos],202);
 	}
 
 	/**

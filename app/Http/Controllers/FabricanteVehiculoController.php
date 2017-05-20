@@ -5,16 +5,16 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class FabricanteController extends Controller {
+class FabricanteVehiculoController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($id)
 	{
-		return "Mostrando la lista de los fabricantes";
+		return "Mostrando los vehículos que pertenecen a los fabbricantes " .$id;
 	}
 
 	/**
@@ -24,9 +24,9 @@ class FabricanteController extends Controller {
 	 */
 	public function create()
 	{
-		return "Mostrando el menu para crear un fabricante";
+		return "Mostrando formulario para crear vehículo del fabricante " .$id;
 	}
-
+	
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -43,9 +43,9 @@ class FabricanteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($idFabricante, $idVehiculo)
 	{
-		return "Mostrando el fabricante con el id ".$id;
+		return "Mostrando el vehículo " .$idVehiculo. " del fabricante " . $idFabricante;
 	}
 
 	/**
@@ -54,9 +54,9 @@ class FabricanteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($idFabricante, $idVehiculo)
 	{
-		return "Mostrando el formulario para editar el fabricante con id " .$id;
+		return "Mostrando el formulario para editar el vehículo" .$idVehiculo. " del fabricante " . $idFabricante;
 	}
 
 	/**
@@ -65,9 +65,9 @@ class FabricanteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($idFabricante, $idVehiculo)
 	{
-		return "Mostrando el formulario para actualizar el fabricante con id " .$id;
+		return "Mostrando el formulario para actualizar el vehículo" .$idVehiculo. "  del fabricante " . $idFabricante;
 	}
 
 	/**
@@ -76,9 +76,9 @@ class FabricanteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($idFabricante, $idVehiculo)
 	{
-		return "Mostrando el formulario para eliminar el fabricante con id " .$id;
+		return "Mostrando el formulario para eliminar el vehículo ".$idVehiculo. " del fabricante " . $idFabricante;
 	}
 
 }

@@ -7,19 +7,14 @@ use Illuminate\Http\Request;
 
 class VehiculoController extends Controller {
 
-	public function showAll(){
-		return "Mostrando todos los vehículos"	;
-	}
-
-
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index($id)
+	public function index()
 	{
-		return "Mostrando los vehículos que pertenecen a los fabbricantes " .$id;
+		//
 	}
 
 	/**
@@ -29,9 +24,9 @@ class VehiculoController extends Controller {
 	 */
 	public function create()
 	{
-		return "Mostrando formulario para crear vehículo del fabricante " .$id;
+		//
 	}
-	
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -48,9 +43,9 @@ class VehiculoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($idFabricante, $idVehiculo)
+	public function show($id)
 	{
-		return "Mostrando el vehículo ".$idVehiculo. " del fabricante " . $idFabricante;
+		//
 	}
 
 	/**
@@ -59,9 +54,9 @@ class VehiculoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($idFabricante, $idVehiculo)
+	public function edit($id)
 	{
-		return "Mostrando el formulario para editar el vehículo ".$idVehiculo. " del fabricante " . $idFabricante;
+		//
 	}
 
 	/**
@@ -70,9 +65,9 @@ class VehiculoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($idFabricante, $idVehiculo)
+	public function update($id)
 	{
-		return "Mostrando el formulario para actualizar el vehículo ".$idVehiculo. " del fabricante " . $idFabricante;
+		//
 	}
 
 	/**
@@ -81,9 +76,9 @@ class VehiculoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($idFabricante, $idVehiculo)
+	public function destroy($id)
 	{
-		return "Mostrando el formulario para eliminar el vehículo ".$idVehiculo. " del fabricante " . $idFabricante;
+		//
 	}
 
 }

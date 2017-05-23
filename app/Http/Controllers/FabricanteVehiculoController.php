@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class FabricanteVehiculoController extends Controller {
 
+	public function __construct(){
+		$this->middleware('auth.basic');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

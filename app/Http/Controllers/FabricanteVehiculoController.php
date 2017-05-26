@@ -41,16 +41,22 @@ class FabricanteVehiculoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(Request $request, $id)
 	{
-		if(!$request->get('color') || !$request->get('cilindraje') || !$request->get('peso') || !$request->get('potencia') || !$request->get('fabricante_id') ){
+		if(!$request->get('color') || !$request->get('cilindraje') || !$request->get('peso') || !$request->get('potencia') ){
 			return response()->json(['mensaje'=>'Datos Inválidos o Incompletos','codigo'=>'422'],422);
 		}
-		$fabricante= Fabricante::find($request->get('fabricante_id'));
+		$fabricante= Fabricante::find($id);
 		if(!$fabricante){
 			return response()->json(['mensaje'=>'Fabricante no Existe','codigo'=>'404'],404);
 		}
-		Vehiculo::create($request->all());
+		Vehiculo::create([
+			'color'=>$request->get('color');
+			'cilindraje'=>$request->get('cilindraje'),
+			'peso'=>$request->get('peso'),
+			'potencia'=>$request->get('potencia'),
+			'fabricante_id'=>$id
+			]);
 		//$fabricacnte->vehiculos()->create($request->all());
 		return response()->(['mensaje'=>'El Vehiculo se ha insertado','codigo'=>'201'],201);
 

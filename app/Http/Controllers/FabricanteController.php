@@ -25,9 +25,14 @@ class FabricanteController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		return 'data a mostrar validación correcta';
+	
+		if(!$request->get('nombre') || !$request->get('telefono')){
+			return response()->json(['mensaje'=>'Datos Inválidos o Incompletos','codigo'=>'422'],422);
+		}
+		Fabricante::create([$request->all()]);
+		return response()->json(['mensaje'=>'El fabricante ha sido creado'],202);
 	}
 
 	/**

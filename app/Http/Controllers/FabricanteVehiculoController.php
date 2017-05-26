@@ -91,9 +91,67 @@ class FabricanteVehiculoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($idFabricante, $idVehiculo)
+	public function update(Request $request,$idFabricante, $idVehiculo)
 	{
-		return "Mostrando el formulario para actualizar el vehículo" .$idVehiculo. "  del fabricante " . $idFabricante;
+		$metodo=$request->method();
+		$fabricante=Fabricante::find($idFabricante);
+		if(!$fabricante){
+			return response()->json(['mensaje'=>'No se encuetra al Fabricante','color'=>'404'],202);
+		}
+		$vehiculo=$fabricante->vehiculos()->find($idVehiculo);
+		if(!$vehiculo){
+			return response()->json( ['mensaje'=>'No se encuentra al vehiculo asociado al Fabricante dado','color'=>'404'],404 );
+		}
+
+		$color=$request->get('color');
+		$cilindraje=$request->get('cilindraje');
+		$peso=$request->get('peso');
+		$potencia=$request->get('potencia');
+
+		$flag= false;
+
+		if($metodo ==="PATCH"){
+			
+			if($color!=null && $color != ''){
+				$vehiculo->color=$color;
+				$flag= true;
+			}
+			
+			if($potencia!=null && $potencia != ''){
+				$vehiculo->potencia=$potencia;
+				$flag= true;
+			}
+			if($cilindraje!=null && $cilindraje != ''){
+				$vehiculo->cilindraje=$cilindraje;
+				$flag= true;
+			}
+			
+			if($peso!=null && $peso != ''){
+				$vehiculo->peso=$peso;
+				$flag= true;
+			}
+			if($flag){
+				$vehiculo->save();
+				return response()->json( ['mensaje'->'El Vehiculo a sido editado correctamente','codigo'=>202],202);
+			}
+			return response()->json( ['mensaje'=>'No se han guardado los cambios','codigo'=>200],200);
+			
+
+		}
+
+		if(!$color || !$pontencia || !$cilindraje || $peso){
+			return response()->json(['mensaje'=>'Datos invalidos'],404);
+
+		}
+
+		$vehiculo->color=$color;
+		$vehiculo->potencia=$potencia;
+		$vehiculo->cilindraje=$cilindraje;
+		$vehiculo->peso=$peso;
+
+		$vehiculo->save();
+		
+		return response()->json(['mensaje'=>'EL Vehiculo ha sido editado'],202);
 	}
 
 	/**

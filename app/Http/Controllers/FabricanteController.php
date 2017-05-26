@@ -58,32 +58,39 @@ class FabricanteController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
+		$flag = false;
 		$metodo=$request->method();
 		$fabricante=Fabricante::find($id);
 		if($metodo ==="PATCH"){
 			$nombre = $request->get('nombre');
 			if($nombre!=null && $nombre != ''){
 				$fabricante->nombre=$nombre;
+				$flag= true;
 			}
 			$telefono = $request->get('telefono');
 			if($telefono!=null && $telefono != ''){
 				$fabricante->telefono=$telefono;
+				$flag= true;
 			}
-			$fabricante->save();
+			if($flag){
+				$fabricante->save();
 			return "registro editado con patch";
+			}
+			
+			return response()->json(['mensaje'=>'No se an guardado los cambios, Datos nulos''codigo'=>202],202);
 
 		}
 		$nombre = $request->get('nombre');
 		$telefono = $request->get('telefono');
 		if(!$nombre || !$telefono){
-			return "error";
+			return response()->json(['mensaje'=>'Datos invalidos'],404);
 
 		}
 		
-			$fabricante->nombre=$nombre;
-			$fabricante->telefono=$telefono;
-			$fabricante->save();
-			return "grabando con PUT corectamente";
+		$fabricante->nombre=$nombre;
+		$fabricante->telefono=$telefono;
+		$fabricante->save();
+		return response()->json(['mensaje'=>'EL fabricante ha sido editado'],202);
 	}
 
 	/**

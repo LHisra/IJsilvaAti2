@@ -56,9 +56,34 @@ class FabricanteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		return "Mostrando el formulario para actualizar el fabricante con id " .$id;
+		$metodo=$request->method();
+		$fabricante=Fabricante::find($id);
+		if($metodo ==="PATCH"){
+			$nombre = $request->get('nombre');
+			if($nombre!=null && $nombre != ''){
+				$fabricante->nombre=$nombre;
+			}
+			$telefono = $request->get('telefono');
+			if($telefono!=null && $telefono != ''){
+				$fabricante->telefono=$telefono;
+			}
+			$fabricante->save();
+			return "registro editado con patch";
+
+		}
+		$nombre = $request->get('nombre');
+		$telefono = $request->get('telefono');
+		if(!$nombre || !$telefono){
+			return "error";
+
+		}
+		
+			$fabricante->nombre=$nombre;
+			$fabricante->telefono=$telefono;
+			$fabricante->save();
+			return "grabando con PUT corectamente";
 	}
 
 	/**
